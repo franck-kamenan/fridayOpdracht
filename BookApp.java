@@ -31,7 +31,7 @@ public class BookApp {
     public static Book getNewestBook(Book[] books){
 
         return Stream.of(books)
-                .sorted(Comparator.comparing(e -> ((Book) e).getReleaseDate()).reversed())
+                .sorted(Comparator.comparing(Book::getReleaseDate).reversed())
                 .findFirst()
                 .get();
     }
@@ -41,7 +41,7 @@ public class BookApp {
         Person youngest = Stream.of(books)
                 .map(e -> e.getAuthor())
                 .distinct()
-                .sorted(Comparator.comparing(e -> ((Person) e).getDateOfBirth()).reversed())
+                .sorted(Comparator.comparing(Person::getDateOfBirth).reversed())
                 .findFirst()
                 .get();
 
