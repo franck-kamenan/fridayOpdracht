@@ -26,6 +26,8 @@ public class BookApp {
 
         System.out.println(getNewestBook(bookArray));
         printYoungestAuthor(bookArray);
+        System.out.println();
+        printSortedByTitle(bookArray);
     }
 
     public static Book getNewestBook(Book[] books){
@@ -47,5 +49,12 @@ public class BookApp {
 
         System.out.println();
         System.out.println(youngest);
+    }
+
+    public static void printSortedByTitle(Book[] books) {
+
+        Stream.of(books)
+                .sorted(Comparator.comparing(Book::getTitle))
+                .forEach(System.out::println);
     }
 }
