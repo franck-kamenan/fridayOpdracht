@@ -25,13 +25,27 @@ public class BookApp {
                         , "super hero");
 
         System.out.println(getNewestBook(bookArray));
+        printYoungestAuthor(bookArray);
     }
 
     public static Book getNewestBook(Book[] books){
 
         return Stream.of(books)
-                .sorted(Comparator.comparing(e -> ((Book) e).getReleaseDate())
-                .reversed())
-                .findFirst().get();
+                .sorted(Comparator.comparing(e -> ((Book) e).getReleaseDate()).reversed())
+                .findFirst()
+                .get();
+    }
+
+    public static void printYoungestAuthor(Book[] books) {
+
+        Person youngest = Stream.of(books)
+                .map(e -> e.getAuthor())
+                .distinct()
+                .sorted(Comparator.comparing(e -> ((Person) e).getDateOfBirth()).reversed())
+                .findFirst()
+                .get();
+
+        System.out.println();
+        System.out.println(youngest);
     }
 }
