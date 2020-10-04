@@ -29,7 +29,9 @@ public class BookApp {
 
     public static Book getNewestBook(Book[] books){
 
-        return Stream.of(books).sorted(Comparator.comparing(e -> ((Book) e).getReleaseDate()))
-                        .findFirst().get();
+        return Stream.of(books)
+                .sorted(Comparator.comparing(e -> ((Book) e).getReleaseDate())
+                .reversed())
+                .findFirst().get();
     }
 }
